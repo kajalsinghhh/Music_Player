@@ -1,5 +1,5 @@
 const music = new Audio('audio/mp3.1.mp3');
-// music.play();
+ music.play();
 
 
 const songs = [
