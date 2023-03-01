@@ -18,7 +18,7 @@ const forwardBtn = document.querySelector('.for-btn');
 
 const backwardBtn = document.querySelector('.back-btn');
 
-const playList = document.getElementsByClassName("playListplay");
+const playList = Array.from(document.getElementsByClassName("playListplay"));
 
 const songs = [
     {
@@ -30,6 +30,7 @@ const songs = [
         path : "audio/mp3.1.mp3 "
 
     },
+
     {
 
         id: 2,
@@ -39,6 +40,7 @@ const songs = [
         path : "audio/mp3.2.mp3 "
 
     },
+
     {
 
         id: 3,
@@ -48,6 +50,7 @@ const songs = [
         path : "audio/mp3.3.mp3 "
 
     },
+
     {
 
         id: 4,
@@ -57,6 +60,7 @@ const songs = [
         path : "audio/mp3.4.mp3 "
 
     },
+
     {
 
         id: 5,
@@ -66,6 +70,7 @@ const songs = [
         path : "audio/mp3.5.mp3 "
 
     },
+
     {
 
         id: 6,
@@ -75,6 +80,7 @@ const songs = [
         path : "audio/mp3.6.mp3 "
 
     },
+
     {
 
         id: 7,
@@ -84,6 +90,7 @@ const songs = [
         path : "audio/mp3.7.mp3 "
 
     },
+
     {
 
         id: 8,
@@ -93,6 +100,7 @@ const songs = [
         path : "audio/mp3.8.mp3 "
 
     },
+
     {
 
         id: 9,
@@ -102,6 +110,7 @@ const songs = [
         path : "audio/mp3.9.mp3 "
 
     },
+
     {
 
         id: 10,
@@ -111,6 +120,7 @@ const songs = [
         path : "audio/mp3.10.mp3 "
 
     },
+
     {
 
         id: 11,
@@ -120,6 +130,7 @@ const songs = [
         path : "audio/mp3.11.mp3 "
 
     },
+
     {
 
         id: 12,
@@ -129,6 +140,7 @@ const songs = [
         path : "audio/mp3.12.mp3 "
 
     },
+
     {
 
         id: 13,
@@ -138,6 +150,7 @@ const songs = [
         path : "audio/mp3.13.mp3 "
 
     },
+
     {
 
         id: 14,
@@ -147,6 +160,7 @@ const songs = [
         path : "audio/mp3.1.mp3 "
 
     },
+
     {
 
         id: 15,
@@ -156,6 +170,7 @@ const songs = [
         path : "audio/mp3.15.mp3 "
 
     },
+
     {
 
         id: 16,
@@ -165,6 +180,7 @@ const songs = [
         path : "audio/mp3.16.mp3 "
 
     },
+
     {
 
         id: 17,
@@ -174,6 +190,7 @@ const songs = [
         path : "audio/mp3.17.mp3 "
 
     },
+
     {
 
         id: 18,
@@ -183,6 +200,7 @@ const songs = [
         path : "audio/mp3.18.mp3 "
 
     },
+
     {
 
         id: 19,
@@ -192,6 +210,7 @@ const songs = [
         path : "audio/mp3.19.mp3 "
 
     },
+
     {
 
         id: 20,
@@ -306,7 +325,7 @@ backwardBtn.addEventListener('click', () => {
 
 for(var i = 0; i < playList.length ; i++ ){
   playList[i].addEventListener('click' , function(){
-       setMusic(this.id+1);
+       setMusic(playList[i].id + 1);
     });
   }
 
