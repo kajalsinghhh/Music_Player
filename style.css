@@ -136,6 +136,9 @@ header .menu_side .menu_song{
     overflow: auto;
 }
 
+header .menu_side .menu_song::-webkit-scrollbar{
+    display: none;
+   }
 
 
 header .menu_side .menu_song li{
