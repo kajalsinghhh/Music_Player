@@ -18,7 +18,7 @@ const forwardBtn = document.querySelector('.for-btn');
 
 const backwardBtn = document.querySelector('.back-btn');
 
-// const playList = document.getElementsByClassName("playListplay");
+const playList = document.getElementsByClassName("playListplay");
 
 const songs = [
     {
@@ -304,12 +304,11 @@ backwardBtn.addEventListener('click', () => {
     playMusic();
 });
 
-// for(let i = 0; i < playList.length ; i++ ){
-//     playList[i].addEventListener('click' , function(){
-//         setMusic(this.id+1);
-//     });
-// }
-
+for(var i = 0; i < playList.length ; i++ ){
+  playList[i].addEventListener('click' , function(){
+       setMusic(this.id+1);
+    });
+  }
 
 
 document.getElementById('pop_song_left').addEventListener('click' ,function(){
