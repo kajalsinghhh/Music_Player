@@ -230,6 +230,7 @@ Array.from(document.getElementsByClassName('songItem')).forEach((e, i) => {
 });
 
 const playList = document.getElementsByClassName("playListplay");
+
 for (var i = 0; i < playList.length; i++) {
     playList[i].addEventListener('click', function () {
         setMusic(this.id - 1);
