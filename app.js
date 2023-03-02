@@ -325,7 +325,7 @@ backwardBtn.addEventListener('click', () => {
 
 for(var i = 0; i < playList.length ; i++ ){
   playList[i].addEventListener('click' , function(){
-       setMusic(playList[i].id + 1);
+       setMusic(playList[i].id);
     });
   }
 
