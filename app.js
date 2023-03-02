@@ -1,8 +1,9 @@
 
 
+
 const music = document.querySelector('#audio');
 
-const seekBar = document.querySelector('#seek');
+var seekBar = document.querySelector('#seek');
 
 const songName = document.querySelector('#title');
 
@@ -17,9 +18,6 @@ const playBtn = document.querySelector('#masterPlay');
 const forwardBtn = document.querySelector('.for-btn');
 
 const backwardBtn = document.querySelector('.back-btn');
-
-const playList = Array.from(document.getElementsByClassName("playListplay"));
-
 const songs = [
     {
 
@@ -223,25 +221,32 @@ const songs = [
     
 ];
 
-
 let currentMusic = 0;
 
-Array.from(document.getElementsByClassName('songItem')).forEach((e, i) =>{
+Array.from(document.getElementsByClassName('songItem')).forEach((e, i) => {
     e.getElementsByTagName('img')[0].src = songs[i].poster;
     e.getElementsByTagName('h5')[0].innerHTML = songs[i].songName;
 
 });
 
+const playList = document.getElementsByClassName("playListplay");
+for (var i = 0; i < playList.length; i++) {
+    playList[i].addEventListener('click', function () {
+        setMusic(this.id - 1);
+        playMusic();
+    });
+}
 
-playBtn.addEventListener('click' , function(){
 
-    if(music.paused  || music.currentTime <= 0){
+playBtn.addEventListener('click', function () {
+
+    if (music.paused || music.currentTime <= 0) {
         music.play();
         document.getElementById("wave").classList.add("active1");
         playBtn.classList.remove("bi-play-fill");
         playBtn.classList.add("bi-pause-fill");
 
-    }else{
+    } else {
         music.pause();
         document.getElementById("wave").classList.remove("active1");
         playBtn.classList.remove("bi-pause-fill");
@@ -256,19 +261,28 @@ const setMusic = (i) => {
     seekBar.value = 0;  // set range slide value to 0 ;
     let song = songs[i];
     currentMusic = i;
-
     music.src = song.path;
     songName.innerHTML = song.songName;
     photo.src = song.poster;
-    currentTime.innerHTML = '00:00';
 
-    setTimeout(() => {
+    setInterval(() => {
+
+        seekBar.value = music.currentTime;
         seekBar.max = music.duration;
+        currentTime.innerHTML = formatTime(music.currentTime);
         musicDuration.innerHTML = formatTime(music.duration);
-    }, 300);
+        if (Math.floor(music.currentTime) == Math.floor(seekBar.max)) {
+            forwardBtn.click();
+        }
+    }, 500);
+
 }
 
-setMusic(0);
+
+seekBar.addEventListener('change', () => {
+    music.currentTime = seekBar.value;
+    playMusic();
+})
 
 const formatTime = (time) => {
     let min = Math.floor(time / 60);
@@ -283,26 +297,15 @@ const formatTime = (time) => {
 }
 
 
-setInterval(() => {
-    seekBar.value = music.currentTime;
-    currentTime.innerHTML = formatTime(music.currentTime);
-    if (Math.floor(music.currentTime) == Math.floor(seekBar.max)) {
-        forwardBtn.click();
-    }
-}, 500); 
-
-seekBar.addEventListener('change', () => {
-    music.currentTime = seekBar.value;
-    playMusic();
-})
-
 const playMusic = () => {
-        music.play();
-        playBtn.classList.remove("bi-play-fill");
-        playBtn.classList.add("bi-pause-fill");   
-     };
+    music.play();
+    document.getElementById("wave").classList.add("active1");
+    playBtn.classList.remove("bi-play-fill");
+    playBtn.classList.add("bi-pause-fill");
+};
 
-     //forward and backward
+
+//forward and backward
 
 forwardBtn.addEventListener('click', () => {
     if (currentMusic >= songs.length - 1) {
@@ -312,6 +315,7 @@ forwardBtn.addEventListener('click', () => {
     }
     setMusic(currentMusic);
     playMusic();
+
 });
 backwardBtn.addEventListener('click', () => {
     if (currentMusic <= 0) {
@@ -321,25 +325,22 @@ backwardBtn.addEventListener('click', () => {
     }
     setMusic(currentMusic);
     playMusic();
+
 });
 
-for(var i = 0; i < playList.length ; i++ ){
-  playList[i].addEventListener('click' , function(){
-       setMusic(playList[i].id);
-    });
-  }
+setMusic(0);
 
 
-document.getElementById('pop_song_left').addEventListener('click' ,function(){
-    document.getElementsByClassName('popular_song')[0].scrollBy(-100 , 0 );
+document.getElementById('pop_song_left').addEventListener('click', function () {
+    document.getElementsByClassName('popular_song')[0].scrollBy(-100, 0);
 });
-document.getElementById('pop_song_right').addEventListener('click' ,function(){
-document.getElementsByClassName('popular_song')[0].scrollBy(100 , 0 );
+document.getElementById('pop_song_right').addEventListener('click', function () {
+    document.getElementsByClassName('popular_song')[0].scrollBy(100, 0);
 });
 
-document.getElementById('pop_song_left_2').addEventListener('click' ,function(){
-document.getElementsByClassName('popular_artists')[0].scrollBy(-100 , 0 );
+document.getElementById('pop_song_left_2').addEventListener('click', function () {
+    document.getElementsByClassName('popular_artists')[0].scrollBy(-100, 0);
 });
-document.getElementById('pop_song_right_2').addEventListener('click' ,function(){
-document.getElementsByClassName('popular_artists')[0].scrollBy(100 , 0 );
+document.getElementById('pop_song_right_2').addEventListener('click', function () {
+    document.getElementsByClassName('popular_artists')[0].scrollBy(100, 0);
 });
