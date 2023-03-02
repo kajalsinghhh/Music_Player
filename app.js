@@ -155,7 +155,7 @@ const songs = [
         songName: `Kalash chori <br>
         <div class="subtitle">Raga</div>`,
         poster: "image/img 14.jpeg" ,
-        path : "audio/mp3.1.mp3 "
+        path : "audio/mp3.14.mp3 "
 
     },
 
